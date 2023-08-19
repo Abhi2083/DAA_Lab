@@ -46,7 +46,7 @@ int main()
 {
     int option;
     int data[50000]; // Assuming maximum size
-    int n = 10;
+    int n ;
 
     while (1)
     {
@@ -87,7 +87,7 @@ int main()
         }
 
         FILE *input = fopen(inputFile, "r");
-        // fscanf(input, "%d", &n);
+        fscanf(input, "%d", &n);
         for (int i = 0; i < n; i++)
         {
             fscanf(input, "%d", &data[i]);
@@ -95,25 +95,24 @@ int main()
         fclose(input);
 
         int comparisons = 0;
-        insertionSort(data, n, &comparisons);
 
         printf("Before Sorting: Content of the input file\n");
+        readFromFile(inputFile, data, n);
         for (int i = 0; i < n; i++)
         {
             printf("%d ", data[i]);
         }
         printf("\n");
 
+        insertionSort(data, n, &comparisons);
+
         writeToFile(outputFile, data, n);
 
         printf("After Sorting: Content of the output file\n");
-        FILE *output = fopen(outputFile, "r");
-        for (int i = n - 1; i >= 0; i--)
+        for (int i = 0; i < n; i++)
         {
-            fscanf(output, "%d", &data[i]);
             printf("%d ", data[i]);
         }
-        fclose(output);
         printf("\n");
 
         printf("Number of Comparisons: %d\n", comparisons);

@@ -21,7 +21,8 @@ int binary_search_leftmost(int arr[], int size, int key, int *comparisons) {
 
         if (arr[mid] == key) {
             index = mid;
-            right = mid - 1;  
+            break;
+            //right = mid - 1;  
         } else if (arr[mid] < key) {
             left = mid + 1;
         } else {
