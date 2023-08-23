@@ -75,7 +75,7 @@ int main() {
 
         char filename[20];
         if (option == 1)
-            strcpy(filename, "decending.txt");
+            strcpy(filename, "ascending.txt");
         else if (option == 2)
             strcpy(filename, "decending.txt");
         else if (option == 3)
@@ -93,6 +93,12 @@ int main() {
 
         int n;
         fscanf(inputFile, "%d", &n);
+        if (n > 10000) {
+            printf("Number of data points exceeds limit.\n");
+            fclose(inputFile);
+            continue;
+        }
+        
         int arr[n];
         for (int i = 0; i < n; i++) {
             fscanf(inputFile, "%d", &arr[i]);
@@ -105,6 +111,13 @@ int main() {
         end = clock(); // Use clock() to end the timer
         
         double executionTime = ((double)(end - start)) / CLOCKS_PER_SEC * 1e9;
+        
+        printf("Sorted Array:\n");
+        for (int i = 0; i < n; i++) {
+            printf("%d ", arr[i]);
+        }
+        printf("\nNumber of Comparisons: %lld\n", comparisons);
+        printf("Execution Time (ns): %.2lf\n", executionTime);
         
         char outputFilename[20];
         if (option == 1)
